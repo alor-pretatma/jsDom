@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Dom Example...</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="src/Dom.js"></script>
+    </head>
+    <body>
+        
+        <script>
+            Div({
+                id: "one",
+                html: "Allahu Akbar...",
+                childs: [
+                    P({
+                        html: "Hello world?",
+                        "class":"a b c"
+                    }),
+                    I("I element!"),
+                    Dom("br"),
+                    B("B element!"),
+                    Dom("br"),
+                    Span("A span element!"),
+                    Dom("br"),
+                    A("Link element").href("#")
+                ]
+            }).appendTo(
+                    Div({
+                        "class":"wrapper",
+                        styles:{
+                            background: "yellow"
+                        }
+                    }).appendTo("body")
+            );
+    var options=[Option("Select value")];
+    for(var i=0;i<=100;i++){
+        options.push(Option(i).val(i));
+    }
+            Form({
+                id: "form",
+                action: "#",
+                method: "POST",
+                enctype:"multipart/form-data",
+                childs:[
+                    Input("text").id("io").val("value").hint("Placeholder"),
+                    Select({
+                        name: "sel",
+                        childs:options
+                    }),
+                    Input("button").val("Submit")
+                ]
+            }).appendTo("body");
+        </script>
+    </body>
+</html>
