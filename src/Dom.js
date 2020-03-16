@@ -1,18 +1,16 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 
 (function($, W){
     "use strict";
     var attrs=["id", "name", "src", "href"],
     tags=["Div", "I", "B", "A", "Span", "H1", "H2", "H3", "H4", "H5", "H6", "Link", "Script", "P"];
-    tags.forEach(function(tag){
-        W[tag]=function(obj){
-            var dom=$(W.document.createElement(tag.toLowerCase()));
-            if(typeof obj=="string"){
-                dom.html(obj);
-            }else dom.applyDom(obj);
-            return dom;
-        };
-    });
+    
+    
     function applyDom(jQ, obj){
         if(typeof obj!=="object")return;
         if(obj.html){
@@ -43,4 +41,17 @@
         applyDom(this, obj);
         return this;
     };
+    W.Dom=function(tag){
+        return $(W.document.createElement(tag));
+    };
+    
+    tags.forEach(function(tag){
+        W[tag]=function(obj){
+            var dom=$(W.document.createElement(tag.toLowerCase()));
+            if(typeof obj=="string"){
+                dom.html(obj);
+            }else dom.applyDom(obj);
+            return dom;
+        };
+    });
 })(jQuery, window);
